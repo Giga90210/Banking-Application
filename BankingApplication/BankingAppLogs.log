@@ -1,3 +1,27 @@
 2024-02-16 13:11:00.8987|Info|BankingApplication.Program|testing | 
 2024-02-16 13:13:45.3216|Info|BankingApplication.Program|testing | 
 2024-02-16 13:16:45.7881|Info|BankingApplication.Program|testing | 
+2024-02-16 13:40:54.1269|Info|BankingApplication.Program|testing | 
+2024-02-16 13:46:00.2626|Info|BankingApplication.Program|testing | 
+2024-02-16 13:51:27.3649|Info|BankingApplication.Program|testing | 
+2024-02-16 14:00:04.6918|Info|BankingApplication.Program|testing | 
+2024-02-16 14:04:00.3000|Info|BankingApplication.Transaction|Created Transaction "FillBalance" 100 0 0 |transType=FillBalance, gel=100, usd=0, eur=0 
+2024-02-16 16:03:46.2250|Info|BankingApplication.Program|Exception thrown System.FormatException: Input string was not in a correct format.
+   at System.Number.ThrowOverflowOrFormatException(ParsingStatus status, TypeCode type)
+   at System.Number.ParseInt32(ReadOnlySpan`1 value, NumberStyles styles, NumberFormatInfo info)
+   at System.Convert.ToInt32(String value)
+   at BankingApplication.Program.run() in C:\Users\Home\RiderProjects\BankingApplication\BankingApplication\Program.cs:line 41 | 
+2024-02-16 16:04:10.6821|Info|BankingApplication.Program|Exception thrown System.FormatException: Input string was not in a correct format.
+   at System.Number.ThrowOverflowOrFormatException(ParsingStatus status, TypeCode type)
+   at System.Number.ParseInt32(ReadOnlySpan`1 value, NumberStyles styles, NumberFormatInfo info)
+   at System.Convert.ToInt32(String value)
+   at BankingApplication.Program.run() in C:\Users\Home\RiderProjects\BankingApplication\BankingApplication\Program.cs:line 41 | 
+2024-02-16 16:19:30.3670|Info|BankingApplication.Transaction|Created Transaction "Withdraw" 41.77 0 0 |transType=Withdraw, gel=41.77, usd=0, eur=0 
+2024-02-16 16:53:38.2921|Info|BankingApplication.Transaction|Exception thrown System.FormatException: Input string was not in a correct format.
+   at System.Number.ThrowOverflowOrFormatException(ParsingStatus status, TypeCode type)
+   at System.Convert.ToDouble(String value)
+   at BankingApplication.Transaction.Withdraw(User currentUser) in C:\Users\Home\RiderProjects\BankingApplication\BankingApplication\Transaction.cs:line 81 | 
+2024-02-16 16:56:03.7293|Info|BankingApplication.Transaction|Exception thrown: System.FormatException: Input string was not in a correct format.
+   at System.Number.ThrowOverflowOrFormatException(ParsingStatus status, TypeCode type)
+   at System.Convert.ToDouble(String value)
+   at BankingApplication.Transaction.Withdraw(User currentUser) in C:\Users\Home\RiderProjects\BankingApplication\BankingApplication\Transaction.cs:line 81 | 

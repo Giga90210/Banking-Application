@@ -5,15 +5,23 @@ using System.Linq;
 using System.Net;
 using System.Text.Json.Serialization;
 using Newtonsoft.Json;
+using NLog;
 
 namespace BankingApplication
 {
     class Program
     {
+        private static readonly Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         static void Main(string[] args)
         {
-            var logger = NLog.LogManager.GetCurrentClassLogger();
-            logger.Info("testing");
+            
+            run();
+            
+            LogManager.Shutdown();
+        }
+
+        static void run()
+        {
             var test123Text = File.ReadAllText("C:\\Users\\Home\\RiderProjects\\BankingApplication\\BankingApplication\\test123.json");
             var userList = JsonConvert.DeserializeObject<List<User>>(test123Text);
             while (true)
@@ -27,7 +35,17 @@ namespace BankingApplication
                 Console.Write("Enter the expiration date of your card: ");
                 var inputExpirationDate = Console.ReadLine();
                 Console.Write("Enter your card verification code(CVC): ");
-                var inputCVC = Convert.ToInt32(Console.ReadLine());
+                int inputCVC;
+                try
+                {
+                    inputCVC = Convert.ToInt32(Console.ReadLine());
+                }
+                catch (Exception e)
+                {
+                    Logger.Info($"Exception thrown {e}");
+                    Console.WriteLine("Please enter valid CVC");
+                    break;
+                }
                 
                 foreach (var user in userList)
                 {
@@ -42,7 +60,7 @@ namespace BankingApplication
                     Console.WriteLine("\nNo such user exists in our database, please try again\n");
                     break;
                 }
-                if (!PinCodeCheck(currentUser))
+                if (!currentUser.PinCodeCheck())
                 {
                     Console.WriteLine("\nPlease Provide Correct PIN!\n");
                     break;
@@ -64,13 +82,13 @@ namespace BankingApplication
                     switch (transactionType)
                     {
                         case 1:
-                            CheckBalance(currentUser);
+                            Transaction.CheckBalance(currentUser);
                             break;
                         case 2:
-                            Withdraw(currentUser);
+                            Transaction.Withdraw(currentUser);
                             break;
                         case 3:
-                            Last5Transactions(currentUser);
+                            Transaction.Last5Transactions(currentUser);
                             break;
                         case 4:
                             FillBalance(currentUser);
@@ -95,172 +113,139 @@ namespace BankingApplication
             }
         }
 
-        public static bool PinCodeCheck(User currentUser)
-        {
-            Console.Write("Enter your Pin Code: ");
-            var pinString = Console.ReadLine();
-            if (int.TryParse(pinString, out var pin))
-            {
-                return currentUser.PinCode == pin;
-            }
+        
+//         // SOME LOGIC NEEDS TO BE FIXED HERE
+            //         public static void CheckBalance(User currentUser)
+            //         {
+            //             var amountGEL = currentUser.TransactionHistory.Last().AmountGEL;
+            //             var amountUSD = currentUser.TransactionHistory.Last().AmountUSD;
+            //             var amountEUR = currentUser.TransactionHistory.Last().AmountEUR;
+            //             if (currentUser.TransactionHistory.Count != 0)
+            //             {
+            //                 Transaction.CreateTransaction(currentUser, "CheckBalance");
+            //                 Console.WriteLine($@"Amount GEL: {amountGEL}
+            // Amount USD: {amountUSD}
+            // Amount EUR: {amountEUR}");
+            //
+            //             }
+            //             else
+            //             {
+            //                 Transaction.CreateTransaction(currentUser, "CheckBalance", 0, 0, 0);
+            //                 // LOGIC MISSING HERE
+            //
+            //                 Console.WriteLine("You haven't filled your balance!");
+            //             }
+            //  
+            //
+            //         }
 
-            return false;
-        }
-
-        // public static void CreateTransaction(User currentUser, string transactionType, double amountGEL, double amountUSD, double amountEUR)
+        // public static void Withdraw(User currentUser)
         // {
-        //     currentUser.TransactionHistory.Add(new Transaction()
+        //     var amountGEL = currentUser.TransactionHistory.Last().AmountGEL;
+        //     var amountUSD = currentUser.TransactionHistory.Last().AmountUSD;
+        //     var amountEUR = currentUser.TransactionHistory.Last().AmountEUR;
+        //     Console.Write("Enter from which balance you want to withdraw money(GEL, USD, EUR): ");
+        //     var withdrawalBalance = Console.ReadLine();
+        //     switch (withdrawalBalance)
         //     {
-        //         TransactionDate = DateTime.Now,
-        //         TransactionType = transactionType,
-        //         AmountGEL = amountGEL,
-        //         AmountUSD = amountUSD,
-        //         AmountEUR = amountEUR
-        //     });
-        // }
+        //         case "GEL":
+        //             Console.Write("Enter the amount you want to withdraw: ");
+        //             var withdrawalAmountGELString = Console.ReadLine();
+        //             if (double.TryParse(withdrawalAmountGELString, out var withdrawalAmountGEL))
+        //             {
+        //                 if (withdrawalAmountGEL > amountGEL)
+        //                 {
+        //                     Console.WriteLine("Insufficient Balance");
+        //                     Transaction.CreateTransaction(currentUser, "Withdraw");
         //
-        // public static void CreateTransaction(User currentUser, string transactionType)
-        // {
-        //     currentUser.TransactionHistory.Add(new Transaction()
-        //     {
-        //         TransactionDate = DateTime.Now,
-        //         TransactionType = transactionType,
-        //         AmountGEL = currentUser.TransactionHistory.Last().AmountGEL,
-        //         AmountUSD = currentUser.TransactionHistory.Last().AmountUSD,
-        //         AmountEUR = currentUser.TransactionHistory.Last().AmountEUR
-        //     });
+        //                 }
+        //                 else
+        //                 {
+        //                     Console.WriteLine($"You have withdrawn {withdrawalAmountGEL} Gel");
+        //                     var newGELBalance = amountGEL - withdrawalAmountGEL;
+        //                     Transaction.CreateTransaction(currentUser, "Withdraw", newGELBalance, amountUSD, amountEUR);
+        //                 
+        //                 }   
+        //             }
+        //             else
+        //             {
+        //                 Console.WriteLine("Invalid Amount");
+        //             }
+        //             break;
+        //         case "USD":
+        //             Console.Write("Enter the amount you want to withdraw: ");
+        //             var withdrawalAmountUSDString = Console.ReadLine();
+        //             if (double.TryParse(withdrawalAmountUSDString, out var withdrawalAmountUSD))
+        //             {
+        //                 if (withdrawalAmountUSD > amountUSD)
+        //                 {
+        //                     Console.WriteLine("Insufficient Balance");
+        //                     Transaction.CreateTransaction(currentUser, "Withdraw");
+        //
+        //                 }
+        //                 else
+        //                 {
+        //                     Console.WriteLine($"You have withdrawn {withdrawalAmountUSD} USD");
+        //                     var newUSDBalance = amountUSD - withdrawalAmountUSD;
+        //                     Transaction.CreateTransaction(currentUser, "Withdraw", amountGEL, newUSDBalance, amountEUR);
+        //                 
+        //                 }
+        //             }
+        //             else
+        //             {
+        //                 Console.WriteLine("Invalid Amount");
+        //             }
+        //             break;
+        //         case "EUR":
+        //             Console.Write("Enter the amount you want to withdraw: ");
+        //             var withdrawalAmountEURString = Console.ReadLine();
+        //             if (double.TryParse(withdrawalAmountEURString, out var withdrawalAmountEUR))
+        //             {
+        //                 if (withdrawalAmountEUR > amountEUR)
+        //                 {
+        //                     Console.WriteLine("Insufficient Balance");
+        //                     Transaction.CreateTransaction(currentUser, "Withdraw");
+        //
+        //                 }
+        //                 else
+        //                 {
+        //                     Console.WriteLine($"You have withdrawn {withdrawalAmountEUR} EUR");
+        //                     var newEURBalance = amountEUR - withdrawalAmountEUR;
+        //                     Transaction.CreateTransaction(currentUser, "Withdraw", amountGEL, amountUSD, newEURBalance);
+        //                 
+        //                 } 
+        //             }
+        //             else
+        //             {
+        //                 Console.WriteLine("Invalid Amount");
+        //             }
+        //             break;
+        //         default:
+        //             Console.WriteLine("Invalid Balance");
+        //             break;
+        //     }
         // }
-        public static void CheckBalance(User currentUser)
-        {
-            var amountGEL = currentUser.TransactionHistory.Last().AmountGEL;
-            var amountUSD = currentUser.TransactionHistory.Last().AmountUSD;
-            var amountEUR = currentUser.TransactionHistory.Last().AmountEUR;
-            if (currentUser.TransactionHistory.Count != 0)
-            {
-                Transaction.CreateTransaction(currentUser, "CheckBalance");
-                Console.WriteLine($@"Amount GEL: {amountGEL}
-Amount USD: {amountUSD}
-Amount EUR: {amountEUR}");
 
-            }
-            else
-            {
-                Transaction.CreateTransaction(currentUser, "CheckBalance", 0, 0, 0);
-                // LOGIC MISSING HERE
-
-                Console.WriteLine("You haven't filled your balance!");
-            }
- 
-
-        }
-
-        public static void Withdraw(User currentUser)
-        {
-            var amountGEL = currentUser.TransactionHistory.Last().AmountGEL;
-            var amountUSD = currentUser.TransactionHistory.Last().AmountUSD;
-            var amountEUR = currentUser.TransactionHistory.Last().AmountEUR;
-            Console.Write("Enter from which balance you want to withdraw money(GEL, USD, EUR): ");
-            var withdrawalBalance = Console.ReadLine();
-            switch (withdrawalBalance)
-            {
-                case "GEL":
-                    Console.Write("Enter the amount you want to withdraw: ");
-                    var withdrawalAmountGELString = Console.ReadLine();
-                    if (double.TryParse(withdrawalAmountGELString, out var withdrawalAmountGEL))
-                    {
-                        if (withdrawalAmountGEL > amountGEL)
-                        {
-                            Console.WriteLine("Insufficient Balance");
-                            Transaction.CreateTransaction(currentUser, "Withdraw");
-
-                        }
-                        else
-                        {
-                            Console.WriteLine($"You have withdrawn {withdrawalAmountGEL} Gel");
-                            var newGELBalance = amountGEL - withdrawalAmountGEL;
-                            Transaction.CreateTransaction(currentUser, "Withdraw", newGELBalance, amountUSD, amountEUR);
-                        
-                        }   
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid Amount");
-                    }
-                    break;
-                case "USD":
-                    Console.Write("Enter the amount you want to withdraw: ");
-                    var withdrawalAmountUSDString = Console.ReadLine();
-                    if (double.TryParse(withdrawalAmountUSDString, out var withdrawalAmountUSD))
-                    {
-                        if (withdrawalAmountUSD > amountUSD)
-                        {
-                            Console.WriteLine("Insufficient Balance");
-                            Transaction.CreateTransaction(currentUser, "Withdraw");
-
-                        }
-                        else
-                        {
-                            Console.WriteLine($"You have withdrawn {withdrawalAmountUSD} USD");
-                            var newUSDBalance = amountUSD - withdrawalAmountUSD;
-                            Transaction.CreateTransaction(currentUser, "Withdraw", amountGEL, newUSDBalance, amountEUR);
-                        
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid Amount");
-                    }
-                    break;
-                case "EUR":
-                    Console.Write("Enter the amount you want to withdraw: ");
-                    var withdrawalAmountEURString = Console.ReadLine();
-                    if (double.TryParse(withdrawalAmountEURString, out var withdrawalAmountEUR))
-                    {
-                        if (withdrawalAmountEUR > amountEUR)
-                        {
-                            Console.WriteLine("Insufficient Balance");
-                            Transaction.CreateTransaction(currentUser, "Withdraw");
-
-                        }
-                        else
-                        {
-                            Console.WriteLine($"You have withdrawn {withdrawalAmountEUR} EUR");
-                            var newEURBalance = amountEUR - withdrawalAmountEUR;
-                            Transaction.CreateTransaction(currentUser, "Withdraw", amountGEL, amountUSD, newEURBalance);
-                        
-                        } 
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid Amount");
-                    }
-                    break;
-                default:
-                    Console.WriteLine("Invalid Balance");
-                    break;
-            }
-        }
-
-        public static void Last5Transactions(User currentUser)
-        {
-            if (currentUser.TransactionHistory.Count > 5)
-            {
-                Transaction.CreateTransaction(currentUser, "Last5Transactions");
-                var last5Transactions = currentUser.TransactionHistory.Skip(currentUser.TransactionHistory.Count - 5)
-                    .ToList();
-                foreach (var transaction in last5Transactions)
-                {
-                    Console.WriteLine(transaction.ToString());
-                }
-            }
-            else
-            {
-                foreach (var transaction in currentUser.TransactionHistory)
-                {
-                    Console.WriteLine(transaction.ToString());
-                }
-            }
-        }
+        // public static void Last5Transactions(User currentUser)
+        // {
+        //     if (currentUser.TransactionHistory.Count > 5)
+        //     {
+        //         Transaction.CreateTransaction(currentUser, "Last5Transactions");
+        //         var last5Transactions = currentUser.TransactionHistory.Skip(currentUser.TransactionHistory.Count - 5)
+        //             .ToList();
+        //         foreach (var transaction in last5Transactions)
+        //         {
+        //             Console.WriteLine(transaction.ToString());
+        //         }
+        //     }
+        //     else
+        //     {
+        //         foreach (var transaction in currentUser.TransactionHistory)
+        //         {
+        //             Console.WriteLine(transaction.ToString());
+        //         }
+        //     }
+        // }
 
         public static void FillBalance(User currentUser)
         {
@@ -483,137 +468,3 @@ Amount EUR: {amountEUR}");
 }
 
 
-
-
-
-
-
-
-
-            // var testCardJohn = new Card()
-            // {
-            //     CardNumber = "1111-2222-3333-4444",
-            //     ExpirationDate = "05/26",
-            //     CVC = 111
-            // };
-            // var testUserJohn = new User()
-            // {
-            //     FirstName = "John",
-            //     LastName = "Doe",
-            //     CardDetails = testCardJohn,
-            //     PinCode = 1111,
-            //     TransactionHistory = new List<Transaction>()
-            // };
-            //
-            //
-            //
-            //
-            // var testCardJane = new Card()
-            // {
-            //     CardNumber = "1234-5678-4321-8765",
-            //     ExpirationDate = "11/25",
-            //     CVC = 123
-            // };
-            // var testUserJane = new User()
-            // {
-            //     FirstName = "Jane",
-            //     LastName = "Doe",
-            //     CardDetails = testCardJane,
-            //     PinCode = 1234,
-            //     TransactionHistory = new List<Transaction>()
-            // };
-            //
-            //
-            //
-            //
-            // var testCardMichael = new Card()
-            // {
-            //     CardNumber = "9999-1234-5678-0000",
-            //     ExpirationDate = "03/28",
-            //     CVC = 236
-            // };
-            // var testUserMichael = new User()
-            // {
-            //     FirstName = "Michael",
-            //     LastName = "Jordan",
-            //     CardDetails = testCardMichael,
-            //     PinCode = 2003,
-            //     TransactionHistory = new List<Transaction>()
-            // };
-            //
-            //
-            //
-            //
-            // var testCardKobe = new Card()
-            // {
-            //     CardNumber = "1234-5678-4321-8765",
-            //     ExpirationDate = "12/26",
-            //     CVC = 245
-            // };
-            // var testUserKobe = new User()
-            // {
-            //     FirstName = "Kobe",
-            //     LastName = "Bryant",
-            //     CardDetails = testCardKobe,
-            //     PinCode = 2016,
-            //     TransactionHistory = new List<Transaction>()
-            // };
-            //
-            //
-            //
-            // var testUserList = new List<User>();
-            // testUserList.Add(testUserJohn);
-            // testUserList.Add(testUserJane);
-            // testUserList.Add(testUserMichael);
-            // testUserList.Add(testUserKobe);
-            // var _dataConverted = JsonConvert.SerializeObject(testUserList);
-            // File.WriteAllText(@"C:\Users\Home\RiderProjects\BankingApplication\BankingApplication\test123.json", _dataConverted);
-
-
-
-
-// var testTrans = new Transaction()
-// {
-//     TransactionDate = DateTime.Now,
-//     TransactionType = TransactionType.ViewBalance,
-//     AmountGEL = 100,
-//     AmountUSD = 0,
-//     AmountEUR = 0
-// };
-// var testTrans1 = new Transaction()
-// {
-//     TransactionDate = DateTime.Now,
-//     TransactionType = TransactionType.ChangePIN,
-//     AmountGEL = 100,
-//     AmountUSD = 0,
-//     AmountEUR = 0
-// };
-// var testTrans2 = new Transaction()
-// {
-//     TransactionDate = DateTime.Now,
-//     TransactionType = TransactionType.CurrencyConversion,
-//     AmountGEL = 100,
-//     AmountUSD = 0,
-//     AmountEUR = 0
-// };
-// var testTrans3 = new Transaction()
-// {
-//     TransactionDate = DateTime.Now,
-//     TransactionType = TransactionType.Withdraw,
-//     AmountGEL = 100,
-//     AmountUSD = 0,
-//     AmountEUR = 0
-// };
-// var testTrans4 = new Transaction()
-// {
-//     TransactionDate = DateTime.Now,
-//     TransactionType = TransactionType.FillBalance,
-//     AmountGEL = 100,
-//     AmountUSD = 0,
-//     AmountEUR = 0
-// };
-// testUser.TransactionHistory.Add(testTrans);
-// testUser.TransactionHistory.Add(testTrans1);
-// testUser.TransactionHistory.Add(testTrans2);
-// testUser.TransactionHistory.Add(testTrans3);
-// testUser.TransactionHistory.Add(testTrans4);
