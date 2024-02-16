@@ -1,0 +1,19 @@
+{
+  "FirstName":"Giorgi",
+  "LastName":"Kavtaradze",
+  "CardDetails":{
+      "CardNumber":"1234-5678-4321-8765",
+      "ExpirationDate":"09/25",
+      "CVC":123
+  },
+  "PinCode":1121,
+  "TransactionHistory":[
+    {
+        "TransactionDate":"2024-02-15T21:29:44.7878719+04:00",
+        "TransactionType":0,
+        "AmountGEL":100.0,
+        "AmountUSD":0.0,
+        "AmountEUR":0.0
+    }
+  ]
+}

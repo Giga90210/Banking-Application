@@ -1,0 +1,78 @@
+[
+  {
+    "FirstName": "John",
+    "LastName": "Doe",
+    "CardDetails": {
+      "CardNumber": "1111-2222-3333-4444",
+      "ExpirationDate": "05/26",
+      "CVC": 111
+    },
+    "PinCode": 1111,
+    "TransactionHistory": [
+      {
+        "TransactionDate": "2024-02-16T03:54:19.8002372+04:00",
+        "TransactionType": "BALANCE_CREATION",
+        "AmountGEL": 0.0,
+        "AmountUSD": 0.0,
+        "AmountEUR": 0.0
+      }
+    ]
+  },
+  {
+    "FirstName": "Jane",
+    "LastName": "Doe",
+    "CardDetails": {
+      "CardNumber": "1234-5678-4321-8765",
+      "ExpirationDate": "11/25",
+      "CVC": 123
+    },
+    "PinCode": 1234,
+    "TransactionHistory": [
+      {
+        "TransactionDate": "2024-02-16T03:54:19.8034612+04:00",
+        "TransactionType": "BALANCE_CREATION",
+        "AmountGEL": 0.0,
+        "AmountUSD": 0.0,
+        "AmountEUR": 0.0
+      }
+    ]
+  },
+  {
+    "FirstName": "Michael",
+    "LastName": "Jordan",
+    "CardDetails": {
+      "CardNumber": "9999-1234-5678-0000",
+      "ExpirationDate": "03/28",
+      "CVC": 236
+    },
+    "PinCode": 2003,
+    "TransactionHistory": [
+      {
+        "TransactionDate": "2024-02-16T03:54:19.8034663+04:00",
+        "TransactionType": "BALANCE_CREATION",
+        "AmountGEL": 0.0,
+        "AmountUSD": 0.0,
+        "AmountEUR": 0.0
+      }
+    ]
+  },
+  {
+    "FirstName": "Kobe",
+    "LastName": "Bryant",
+    "CardDetails": {
+      "CardNumber": "1234-5678-4321-8765",
+      "ExpirationDate": "12/26",
+      "CVC": 245
+    },
+    "PinCode": 2016,
+    "TransactionHistory": [
+      {
+        "TransactionDate": "2024-02-16T03:54:19.8034668+04:00",
+        "TransactionType": "BALANCE_CREATION",
+        "AmountGEL": 0.0,
+        "AmountUSD": 0.0,
+        "AmountEUR": 0.0
+      }
+    ]
+  }
+]
