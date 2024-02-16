@@ -1,0 +1,225 @@
+[
+  {
+    "FirstName": "John",
+    "LastName": "Doe",
+    "CardDetails": {
+      "CardNumber": "1111-2222-3333-4444",
+      "ExpirationDate": "05/26",
+      "CVC": 111
+    },
+    "PinCode": 1111,
+    "TransactionHistory": [
+      {
+        "TransactionDate": "2024-02-16T03:54:19.8002372+04:00",
+        "TransactionType": "BALANCE_CREATION",
+        "AmountGEL": 0.0,
+        "AmountUSD": 0.0,
+        "AmountEUR": 0.0
+      },
+      {
+        "TransactionDate": "2024-02-16T04:51:01.9157907+04:00",
+        "TransactionType": "CheckBalance",
+        "AmountGEL": 0.0,
+        "AmountUSD": 0.0,
+        "AmountEUR": 0.0
+      },
+      {
+        "TransactionDate": "2024-02-16T13:51:39.1099921+04:00",
+        "TransactionType": "CheckBalance",
+        "AmountGEL": 0.0,
+        "AmountUSD": 0.0,
+        "AmountEUR": 0.0
+      },
+      {
+        "TransactionDate": "2024-02-16T14:04:00.3380301+04:00",
+        "TransactionType": "FillBalance",
+        "AmountGEL": 100.0,
+        "AmountUSD": 0.0,
+        "AmountEUR": 0.0
+      },
+      {
+        "TransactionDate": "2024-02-16T16:15:04.758813+04:00",
+        "TransactionType": "CheckBalance",
+        "AmountGEL": 100.0,
+        "AmountUSD": 0.0,
+        "AmountEUR": 0.0
+      },
+      {
+        "TransactionDate": "2024-02-16T16:17:28.6333781+04:00",
+        "TransactionType": "Withdraw",
+        "AmountGEL": 100.0,
+        "AmountUSD": 0.0,
+        "AmountEUR": 0.0
+      },
+      {
+        "TransactionDate": "2024-02-16T16:19:30.4041638+04:00",
+        "TransactionType": "Withdraw",
+        "AmountGEL": 41.77,
+        "AmountUSD": 0.0,
+        "AmountEUR": 0.0
+      },
+      {
+        "TransactionDate": "2024-02-16T16:21:36.8726696+04:00",
+        "TransactionType": "Last5Transactions",
+        "AmountGEL": 41.77,
+        "AmountUSD": 0.0,
+        "AmountEUR": 0.0
+      },
+      {
+        "TransactionDate": "2024-02-16T16:22:28.6049286+04:00",
+        "TransactionType": "Last5Transactions",
+        "AmountGEL": 41.77,
+        "AmountUSD": 0.0,
+        "AmountEUR": 0.0
+      },
+      {
+        "TransactionDate": "2024-02-16T20:36:07.9893235+04:00",
+        "TransactionType": "ChangePIN",
+        "AmountGEL": 41.77,
+        "AmountUSD": 0.0,
+        "AmountEUR": 0.0
+      },
+      {
+        "TransactionDate": "2024-02-16T21:04:47.988311+04:00",
+        "TransactionType": "CurrencyConversion",
+        "AmountGEL": 21.770000000000003,
+        "AmountUSD": 7.6,
+        "AmountEUR": 0.0
+      },
+      {
+        "TransactionDate": "2024-02-16T21:05:03.5076263+04:00",
+        "TransactionType": "CheckBalance",
+        "AmountGEL": 21.770000000000003,
+        "AmountUSD": 7.6,
+        "AmountEUR": 0.0
+      },
+      {
+        "TransactionDate": "2024-02-16T21:08:00.647198+04:00",
+        "TransactionType": "CurrencyConversion",
+        "AmountGEL": 11.770000000000003,
+        "AmountUSD": 11.399999999999999,
+        "AmountEUR": 0.0
+      },
+      {
+        "TransactionDate": "2024-02-16T21:08:45.8589801+04:00",
+        "TransactionType": "CheckBalance",
+        "AmountGEL": 11.770000000000003,
+        "AmountUSD": 11.399999999999999,
+        "AmountEUR": 0.0
+      },
+      {
+        "TransactionDate": "2024-02-16T21:10:12.0595915+04:00",
+        "TransactionType": "CurrencyConversion",
+        "AmountGEL": 6.770000000000003,
+        "AmountUSD": 11.399999999999999,
+        "AmountEUR": 1.75
+      },
+      {
+        "TransactionDate": "2024-02-16T21:12:41.2236054+04:00",
+        "TransactionType": "CurrencyConversion",
+        "AmountGEL": 17.330000000000005,
+        "AmountUSD": 7.399999999999999,
+        "AmountEUR": 1.75
+      },
+      {
+        "TransactionDate": "2024-02-16T21:14:12.3792516+04:00",
+        "TransactionType": "CurrencyConversion",
+        "AmountGEL": 17.330000000000005,
+        "AmountUSD": 5.399999999999999,
+        "AmountEUR": 3.6100000000000003
+      },
+      {
+        "TransactionDate": "2024-02-16T21:16:39.102463+04:00",
+        "TransactionType": "CurrencyConversion",
+        "AmountGEL": 17.330000000000005,
+        "AmountUSD": 6.479999999999999,
+        "AmountEUR": 2.6100000000000003
+      },
+      {
+        "TransactionDate": "2024-02-16T21:26:37.5454283+04:00",
+        "TransactionType": "CurrencyConversion",
+        "AmountGEL": 16.330000000000005,
+        "AmountUSD": 6.8599999999999985,
+        "AmountEUR": 2.6100000000000003
+      },
+      {
+        "TransactionDate": "2024-02-16T21:41:52.8216148+04:00",
+        "TransactionType": "ChangePIN",
+        "AmountGEL": 16.330000000000005,
+        "AmountUSD": 6.8599999999999985,
+        "AmountEUR": 2.6100000000000003
+      },
+      {
+        "TransactionDate": "2024-02-16T21:52:11.7518535+04:00",
+        "TransactionType": "FillBalance",
+        "AmountGEL": 1466.33,
+        "AmountUSD": 6.8599999999999985,
+        "AmountEUR": 2.6100000000000003
+      },
+      {
+        "TransactionDate": "2024-02-16T21:52:51.5054295+04:00",
+        "TransactionType": "Last5Transactions",
+        "AmountGEL": 1466.33,
+        "AmountUSD": 6.8599999999999985,
+        "AmountEUR": 2.6100000000000003
+      }
+    ]
+  },
+  {
+    "FirstName": "Jane",
+    "LastName": "Doe",
+    "CardDetails": {
+      "CardNumber": "1234-5678-4321-8765",
+      "ExpirationDate": "11/25",
+      "CVC": 123
+    },
+    "PinCode": 1234,
+    "TransactionHistory": [
+      {
+        "TransactionDate": "2024-02-16T03:54:19.8034612+04:00",
+        "TransactionType": "BALANCE_CREATION",
+        "AmountGEL": 0.0,
+        "AmountUSD": 0.0,
+        "AmountEUR": 0.0
+      }
+    ]
+  },
+  {
+    "FirstName": "Michael",
+    "LastName": "Jordan",
+    "CardDetails": {
+      "CardNumber": "9999-1234-5678-0000",
+      "ExpirationDate": "03/28",
+      "CVC": 236
+    },
+    "PinCode": 2003,
+    "TransactionHistory": [
+      {
+        "TransactionDate": "2024-02-16T03:54:19.8034663+04:00",
+        "TransactionType": "BALANCE_CREATION",
+        "AmountGEL": 0.0,
+        "AmountUSD": 0.0,
+        "AmountEUR": 0.0
+      }
+    ]
+  },
+  {
+    "FirstName": "Kobe",
+    "LastName": "Bryant",
+    "CardDetails": {
+      "CardNumber": "1234-5678-4321-8765",
+      "ExpirationDate": "12/26",
+      "CVC": 245
+    },
+    "PinCode": 2016,
+    "TransactionHistory": [
+      {
+        "TransactionDate": "2024-02-16T03:54:19.8034668+04:00",
+        "TransactionType": "BALANCE_CREATION",
+        "AmountGEL": 0.0,
+        "AmountUSD": 0.0,
+        "AmountEUR": 0.0
+      }
+    ]
+  }
+]

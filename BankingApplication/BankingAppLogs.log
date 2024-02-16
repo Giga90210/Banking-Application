@@ -25,3 +25,64 @@
    at System.Number.ThrowOverflowOrFormatException(ParsingStatus status, TypeCode type)
    at System.Convert.ToDouble(String value)
    at BankingApplication.Transaction.Withdraw(User currentUser) in C:\Users\Home\RiderProjects\BankingApplication\BankingApplication\Transaction.cs:line 81 | 
+2024-02-16 16:58:22.0502|Info|BankingApplication.Transaction|Exception thrown: System.FormatException: Input string was not in a correct format.
+   at System.Number.ThrowOverflowOrFormatException(ParsingStatus status, TypeCode type)
+   at System.Convert.ToDouble(String value)
+   at BankingApplication.Transaction.Withdraw(User currentUser) in C:\Users\Home\RiderProjects\BankingApplication\BankingApplication\Transaction.cs:line 105 | 
+2024-02-16 20:16:48.2316|Info|BankingApplication.Program|exception thrown | System.FormatException: Input string was not in a correct format.
+   at System.Number.ThrowOverflowOrFormatException(ParsingStatus status, TypeCode type)
+   at System.Number.ParseInt32(ReadOnlySpan`1 value, NumberStyles styles, NumberFormatInfo info)
+   at System.Convert.ToInt32(String value)
+   at BankingApplication.Program.Main(String[] args) in C:\Users\Home\RiderProjects\BankingApplication\BankingApplication\Program.cs:line 20
+2024-02-16 20:35:58.3023|Info|BankingApplication.Transaction|ChangePIN method called | 
+2024-02-16 20:36:07.9696|Info|BankingApplication.Transaction|CreateTransaction method called | 
+2024-02-16 20:36:07.9696|Info|BankingApplication.Transaction|Created Transaction "ChangePIN" GEL: 41.77 USD: 0 EUR: 0 |transType=ChangePIN, gel=41.77, usd=0, eur=0 
+2024-02-16 20:37:46.9659|Info|BankingApplication.Transaction|ChangePIN method called | 
+2024-02-16 20:39:14.1854|Info|BankingApplication.Transaction|ChangePIN method called | 
+2024-02-16 21:04:47.9502|Info|BankingApplication.Transaction|Created Transaction "CurrencyConversion" GEL: 21.770000000000003 USD: 7.6 EUR: 0 |transType=CurrencyConversion, gel=21.770000000000003, usd=7.6, eur=0 
+2024-02-16 21:05:03.5044|Info|BankingApplication.Transaction|User Checked Balance | 
+2024-02-16 21:05:03.5044|Info|BankingApplication.Transaction|CreateTransaction method called | 
+2024-02-16 21:05:03.5044|Info|BankingApplication.Transaction|Created Transaction "CheckBalance" GEL: 21.770000000000003 USD: 7.6 EUR: 0 |transType=CheckBalance, gel=21.770000000000003, usd=7.6, eur=0 
+2024-02-16 21:08:00.6074|Info|BankingApplication.Transaction|Created Transaction "CurrencyConversion" GEL: 11.770000000000003 USD: 11.399999999999999 EUR: 0 |transType=CurrencyConversion, gel=11.770000000000003, usd=11.399999999999999, eur=0 
+2024-02-16 21:08:45.8256|Info|BankingApplication.Transaction|User Checked Balance | 
+2024-02-16 21:08:45.8476|Info|BankingApplication.Transaction|CreateTransaction method called | 
+2024-02-16 21:08:45.8476|Info|BankingApplication.Transaction|Created Transaction "CheckBalance" GEL: 11.770000000000003 USD: 11.399999999999999 EUR: 0 |transType=CheckBalance, gel=11.770000000000003, usd=11.399999999999999, eur=0 
+2024-02-16 21:10:12.0270|Info|BankingApplication.Transaction|Created Transaction "CurrencyConversion" GEL: 6.770000000000003 USD: 11.399999999999999 EUR: 1.75 |transType=CurrencyConversion, gel=6.770000000000003, usd=11.399999999999999, eur=1.75 
+2024-02-16 21:12:41.1854|Info|BankingApplication.Transaction|Created Transaction "CurrencyConversion" GEL: 17.330000000000005 USD: 7.399999999999999 EUR: 1.75 |transType=CurrencyConversion, gel=17.330000000000005, usd=7.399999999999999, eur=1.75 
+2024-02-16 21:14:12.3392|Info|BankingApplication.Transaction|Created Transaction "CurrencyConversion" GEL: 17.330000000000005 USD: 5.399999999999999 EUR: 3.6100000000000003 |transType=CurrencyConversion, gel=17.330000000000005, usd=5.399999999999999, eur=3.6100000000000003 
+2024-02-16 21:16:39.0605|Info|BankingApplication.Transaction|Created Transaction "CurrencyConversion" GEL: 17.330000000000005 USD: 6.479999999999999 EUR: 2.6100000000000003 |transType=CurrencyConversion, gel=17.330000000000005, usd=6.479999999999999, eur=2.6100000000000003 
+2024-02-16 21:26:26.0452|Info|BankingApplication.Transaction|CurrencyConversion method called | 
+2024-02-16 21:26:37.5285|Info|BankingApplication.Transaction|Converted from GEL to USD | 
+2024-02-16 21:26:37.5285|Info|BankingApplication.Transaction|Created Transaction "CurrencyConversion" GEL: 16.330000000000005 USD: 6.8599999999999985 EUR: 2.6100000000000003 |transType=CurrencyConversion, gel=16.330000000000005, usd=6.8599999999999985, eur=2.6100000000000003 
+2024-02-16 21:37:11.4142|Info|BankingApplication.Program|Application Started! | 
+2024-02-16 21:37:20.0467|Info|BankingApplication.Program|User Found! | 
+2024-02-16 21:37:20.0467|Info|BankingApplication.User|PinCOdeCheck method called | 
+2024-02-16 21:37:27.4939|Info|BankingApplication.User|Users input PIN code | 
+2024-02-16 21:37:33.5511|Info|BankingApplication.Program|Invalid input! restarting application | 
+2024-02-16 21:41:38.0424|Info|BankingApplication.Program|Application Started! | 
+2024-02-16 21:41:45.3330|Info|BankingApplication.Program|User Found! | 
+2024-02-16 21:41:45.3330|Info|BankingApplication.User|PinCOdeCheck method called | 
+2024-02-16 21:41:46.8097|Info|BankingApplication.User|Users input PIN code | 
+2024-02-16 21:41:49.0976|Info|BankingApplication.Transaction|ChangePIN method called | 
+2024-02-16 21:41:52.8042|Info|BankingApplication.Transaction|CreateTransaction method called | 
+2024-02-16 21:41:52.8042|Info|BankingApplication.Transaction|Created Transaction "ChangePIN" GEL: 16.330000000000005 USD: 6.8599999999999985 EUR: 2.6100000000000003 |transType=ChangePIN, gel=16.330000000000005, usd=6.8599999999999985, eur=2.6100000000000003 
+2024-02-16 21:41:52.8218|Info|BankingApplication.Transaction|User's PIN code changed to 1111 |changedPIN=1111 
+2024-02-16 21:48:54.4959|Info|BankingApplication.Program|Application Started! | 
+2024-02-16 21:49:19.9380|Info|BankingApplication.Program|Application Started! | 
+2024-02-16 21:49:27.5745|Info|BankingApplication.Program|User Found! | 
+2024-02-16 21:49:27.5745|Info|BankingApplication.User|PinCOdeCheck method called | 
+2024-02-16 21:49:34.0601|Info|BankingApplication.User|Users input PIN code | 
+2024-02-16 21:49:36.2043|Info|BankingApplication.Transaction|ChangePIN method called | 
+2024-02-16 21:51:54.2103|Info|BankingApplication.Program|Application Started! | 
+2024-02-16 21:52:01.4395|Info|BankingApplication.Program|User Found! | 
+2024-02-16 21:52:01.4395|Info|BankingApplication.User|PinCOdeCheck method called | 
+2024-02-16 21:52:02.9707|Info|BankingApplication.User|Users input PIN code | 
+2024-02-16 21:52:06.3195|Info|BankingApplication.Transaction|FillBalance method called | 
+2024-02-16 21:52:11.7405|Info|BankingApplication.Transaction|Created Transaction "FillBalance" GEL: 1466.33 USD: 6.8599999999999985 EUR: 2.6100000000000003 |transType=FillBalance, gel=1466.33, usd=6.8599999999999985, eur=2.6100000000000003 
+2024-02-16 21:52:11.7519|Info|BankingApplication.Transaction|User filled their GEL balance by 1450 |filledBy=1450 
+2024-02-16 21:52:40.4795|Info|BankingApplication.Program|Application Started! | 
+2024-02-16 21:52:48.9291|Info|BankingApplication.Program|User Found! | 
+2024-02-16 21:52:48.9291|Info|BankingApplication.User|PinCOdeCheck method called | 
+2024-02-16 21:52:50.1729|Info|BankingApplication.User|Users input PIN code | 
+2024-02-16 21:52:51.4915|Info|BankingApplication.Transaction|User Checked their Last 5 Transactions | 
+2024-02-16 21:52:51.4915|Info|BankingApplication.Transaction|Created Transaction "Last5Transactions" |transType=Last5Transactions 
