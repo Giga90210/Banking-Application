@@ -14,29 +14,41 @@ namespace BankingApplication
         {
             var test123Text = File.ReadAllText("C:\\Users\\Home\\RiderProjects\\BankingApplication\\BankingApplication\\test123.json");
             var userList = JsonConvert.DeserializeObject<List<User>>(test123Text);
-            var loopVar = true;
-            while (loopVar)
+            while (true)
             {
+                var currentUser = new User()
+                {
+                    FirstName = "XXXX"
+                };
                 Console.Write("Enter your card number:");
                 var inputCardNumber = Console.ReadLine();
                 Console.Write("Enter the expiration date of your card: ");
                 var inputExpirationDate = Console.ReadLine();
                 Console.Write("Enter your card verification code(CVC): ");
                 var inputCVC = Convert.ToInt32(Console.ReadLine());
+                
                 foreach (var user in userList)
                 {
                     if (user.CardDetails.CardNumber == inputCardNumber & user.CardDetails.ExpirationDate == inputExpirationDate & user.CardDetails.CVC == inputCVC)
                     {
-                        if (!PinCodeCheck(user))
-                        {
-                            Console.WriteLine("Incorrect PIN code!");
-                            loopVar = false;
-                            break;
-                        }
+                        currentUser = user;
+                    }
+                }
 
-                        Console.WriteLine("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
-                        Console.WriteLine($@"
-                            Hello {user.FirstName} {user.LastName}
+                if (currentUser.FirstName == "XXXX")
+                {
+                    Console.WriteLine("\nNo such user exists in our database, please try again\n");
+                    break;
+                }
+                if (!PinCodeCheck(currentUser))
+                {
+                    Console.WriteLine("\nPlease Provide Correct PIN!\n");
+                    break;
+                }
+
+                Console.WriteLine("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
+                Console.WriteLine($@"
+                            Hello {currentUser.FirstName} {currentUser.LastName}
 
                             1) View Balance
                             2) Withdraw
@@ -44,78 +56,78 @@ namespace BankingApplication
                             4) Fill Balance
                             5) Change PIN
                             6) Currency Conversion");
-                        var transactionTypeString = Console.ReadLine();
-                        if (int.TryParse(transactionTypeString, out var transactionType))
-                        {
-                            switch (transactionType)
-                            {
-                                case 1:
-                                    CheckBalance(user);
-                                    break;
-                                case 2:
-                                    Withdraw(user);
-                                    break;
-                                case 3:
-                                    Last5Transactions(user);
-                                    break;
-                                case 4:
-                                    FillBalance(user);
-                                    break;
-                                case 5:
-                                    ChangePIN(user);
-                                    break;
-                                case 6:
-                                    CurrencyConversion(user);
-                                    break;
-                                default:
-                                    Console.WriteLine("Invalid Operation");
-                                    break;
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine("Invalid Input");
-                        }
-
+                var transactionTypeString = Console.ReadLine();
+                if (int.TryParse(transactionTypeString, out var transactionType))
+                {
+                    switch (transactionType)
+                    {
+                        case 1:
+                            CheckBalance(currentUser);
+                            break;
+                        case 2:
+                            Withdraw(currentUser);
+                            break;
+                        case 3:
+                            Last5Transactions(currentUser);
+                            break;
+                        case 4:
+                            FillBalance(currentUser);
+                            break;
+                        case 5:
+                            ChangePIN(currentUser);
+                            break;
+                        case 6:
+                            CurrencyConversion(currentUser);
+                            break;
+                        default:
+                            Console.WriteLine("Invalid Operation");
+                            break;
                     }
-                    // else
-                    // {
-                    //     Console.WriteLine("No such user exists in our database, please try again");
-                    // }
                 }
+                else
+                {
+                    Console.WriteLine("Invalid Input");
+                }
+                var _dataConverted = JsonConvert.SerializeObject(userList);
+                File.WriteAllText(@"C:\Users\Home\RiderProjects\BankingApplication\BankingApplication\test123.json", _dataConverted);
             }
         }
 
         public static bool PinCodeCheck(User currentUser)
         {
             Console.Write("Enter your Pin Code: ");
-            var pin = Convert.ToInt32(Console.ReadLine());
-            return currentUser.PinCode == pin;
+            var pinString = Console.ReadLine();
+            if (int.TryParse(pinString, out var pin))
+            {
+                return currentUser.PinCode == pin;
+            }
+
+            return false;
         }
 
-        public static void CreateTransaction(User currentUser, string transactionType, double amountGEL, double amountUSD, double amountEUR)
-        {
-            currentUser.TransactionHistory.Add(new Transaction()
-            {
-                TransactionDate = DateTime.Now,
-                TransactionType = transactionType,
-                AmountGEL = amountGEL,
-                AmountUSD = amountUSD,
-                AmountEUR = amountEUR
-            });
-        }
-        
-        public static void CreateTransaction(User currentUser, string transactionType)
-        {
-            currentUser.TransactionHistory.Add(new Transaction()
-            {
-                TransactionDate = DateTime.Now,
-                TransactionType = transactionType,
-                AmountGEL = currentUser.TransactionHistory.Last().AmountGEL,
-                AmountUSD = currentUser.TransactionHistory.Last().AmountUSD,
-                AmountEUR = currentUser.TransactionHistory.Last().AmountEUR
-            });
-        }
+        // public static void CreateTransaction(User currentUser, string transactionType, double amountGEL, double amountUSD, double amountEUR)
+        // {
+        //     currentUser.TransactionHistory.Add(new Transaction()
+        //     {
+        //         TransactionDate = DateTime.Now,
+        //         TransactionType = transactionType,
+        //         AmountGEL = amountGEL,
+        //         AmountUSD = amountUSD,
+        //         AmountEUR = amountEUR
+        //     });
+        // }
+        //
+        // public static void CreateTransaction(User currentUser, string transactionType)
+        // {
+        //     currentUser.TransactionHistory.Add(new Transaction()
+        //     {
+        //         TransactionDate = DateTime.Now,
+        //         TransactionType = transactionType,
+        //         AmountGEL = currentUser.TransactionHistory.Last().AmountGEL,
+        //         AmountUSD = currentUser.TransactionHistory.Last().AmountUSD,
+        //         AmountEUR = currentUser.TransactionHistory.Last().AmountEUR
+        //     });
+        // }
         public static void CheckBalance(User currentUser)
         {
             var amountGEL = currentUser.TransactionHistory.Last().AmountGEL;
@@ -123,7 +135,7 @@ namespace BankingApplication
             var amountEUR = currentUser.TransactionHistory.Last().AmountEUR;
             if (currentUser.TransactionHistory.Count != 0)
             {
-                CreateTransaction(currentUser, "CheckBalance");
+                Transaction.CreateTransaction(currentUser, "CheckBalance");
                 Console.WriteLine($@"Amount GEL: {amountGEL}
 Amount USD: {amountUSD}
 Amount EUR: {amountEUR}");
@@ -131,7 +143,7 @@ Amount EUR: {amountEUR}");
             }
             else
             {
-                CreateTransaction(currentUser, "CheckBalance", 0, 0, 0);
+                Transaction.CreateTransaction(currentUser, "CheckBalance", 0, 0, 0);
                 // LOGIC MISSING HERE
 
                 Console.WriteLine("You haven't filled your balance!");
@@ -157,14 +169,14 @@ Amount EUR: {amountEUR}");
                         if (withdrawalAmountGEL > amountGEL)
                         {
                             Console.WriteLine("Insufficient Balance");
-                            CreateTransaction(currentUser, "Withdraw");
+                            Transaction.CreateTransaction(currentUser, "Withdraw");
 
                         }
                         else
                         {
                             Console.WriteLine($"You have withdrawn {withdrawalAmountGEL} Gel");
                             var newGELBalance = amountGEL - withdrawalAmountGEL;
-                            CreateTransaction(currentUser, "Withdraw", newGELBalance, amountUSD, amountEUR);
+                            Transaction.CreateTransaction(currentUser, "Withdraw", newGELBalance, amountUSD, amountEUR);
                         
                         }   
                     }
@@ -181,14 +193,14 @@ Amount EUR: {amountEUR}");
                         if (withdrawalAmountUSD > amountUSD)
                         {
                             Console.WriteLine("Insufficient Balance");
-                            CreateTransaction(currentUser, "Withdraw");
+                            Transaction.CreateTransaction(currentUser, "Withdraw");
 
                         }
                         else
                         {
                             Console.WriteLine($"You have withdrawn {withdrawalAmountUSD} USD");
                             var newUSDBalance = amountUSD - withdrawalAmountUSD;
-                            CreateTransaction(currentUser, "Withdraw", amountGEL, newUSDBalance, amountEUR);
+                            Transaction.CreateTransaction(currentUser, "Withdraw", amountGEL, newUSDBalance, amountEUR);
                         
                         }
                     }
@@ -205,14 +217,14 @@ Amount EUR: {amountEUR}");
                         if (withdrawalAmountEUR > amountEUR)
                         {
                             Console.WriteLine("Insufficient Balance");
-                            CreateTransaction(currentUser, "Withdraw");
+                            Transaction.CreateTransaction(currentUser, "Withdraw");
 
                         }
                         else
                         {
                             Console.WriteLine($"You have withdrawn {withdrawalAmountEUR} EUR");
                             var newEURBalance = amountEUR - withdrawalAmountEUR;
-                            CreateTransaction(currentUser, "Withdraw", amountGEL, amountUSD, newEURBalance);
+                            Transaction.CreateTransaction(currentUser, "Withdraw", amountGEL, amountUSD, newEURBalance);
                         
                         } 
                     }
@@ -231,7 +243,7 @@ Amount EUR: {amountEUR}");
         {
             if (currentUser.TransactionHistory.Count > 5)
             {
-                CreateTransaction(currentUser, "Last5Transactions");
+                Transaction.CreateTransaction(currentUser, "Last5Transactions");
                 var last5Transactions = currentUser.TransactionHistory.Skip(currentUser.TransactionHistory.Count - 5)
                     .ToList();
                 foreach (var transaction in last5Transactions)
@@ -263,7 +275,7 @@ Amount EUR: {amountEUR}");
                     if (double.TryParse(amountToFillStringGEL, out var amountToFillByGEL))
                     {
                         Console.WriteLine($"GEL balance filled by {amountToFillByGEL}");
-                        CreateTransaction(currentUser, "FillBalance", amountGEL + amountToFillByGEL, amountUSD, amountEUR);
+                        Transaction.CreateTransaction(currentUser, "FillBalance", amountGEL + amountToFillByGEL, amountUSD, amountEUR);
                     }
                     else
                     {
@@ -276,7 +288,7 @@ Amount EUR: {amountEUR}");
                     if (double.TryParse(amountToFillStringUSD, out var amountToFillByUSD))
                     {
                         Console.WriteLine($"GEL balance filled by {amountToFillByUSD}");
-                        CreateTransaction(currentUser, "FillBalance", amountGEL, amountUSD + amountToFillByUSD, amountEUR);
+                        Transaction.CreateTransaction(currentUser, "FillBalance", amountGEL, amountUSD + amountToFillByUSD, amountEUR);
                     }
                     else
                     {
@@ -289,7 +301,7 @@ Amount EUR: {amountEUR}");
                     if (double.TryParse(amountToFillStringEUR, out var amountToFillByEUR))
                     {
                         Console.WriteLine($"GEL balance filled by {amountToFillByEUR}");
-                        CreateTransaction(currentUser, "FillBalance", amountGEL, amountUSD, amountEUR + amountToFillByEUR);
+                        Transaction.CreateTransaction(currentUser, "FillBalance", amountGEL, amountUSD, amountEUR + amountToFillByEUR);
                     }
                     else
                     {
@@ -316,7 +328,7 @@ Amount EUR: {amountEUR}");
                     {
                         currentUser.PinCode = newPIN;
                         Console.WriteLine($"PIN changed to {newPIN}");
-                        CreateTransaction(currentUser, "ChangePIN");
+                        Transaction.CreateTransaction(currentUser, "ChangePIN");
                     }
                     else
                     {
@@ -356,7 +368,7 @@ Amount EUR: {amountEUR}");
                             {
                                 if (amountToConvertGELtoUSD <= amountGEL)
                                 {
-                                    CreateTransaction(currentUser, "CurrencyConversion", amountGEL - amountToConvertGELtoUSD, amountUSD + (0.38*amountToConvertGELtoUSD), amountEUR);
+                                    Transaction.CreateTransaction(currentUser, "CurrencyConversion", amountGEL - amountToConvertGELtoUSD, amountUSD + (0.38*amountToConvertGELtoUSD), amountEUR);
                                 }
                             }
                             else
@@ -371,7 +383,7 @@ Amount EUR: {amountEUR}");
                             {
                                 if (amountToConvertGELtoEUR <= amountGEL)
                                 {
-                                    CreateTransaction(currentUser, "CurrencyConversion", amountGEL - amountToConvertGELtoEUR, amountUSD , amountEUR + (0.35*amountToConvertGELtoEUR));
+                                    Transaction.CreateTransaction(currentUser, "CurrencyConversion", amountGEL - amountToConvertGELtoEUR, amountUSD , amountEUR + (0.35*amountToConvertGELtoEUR));
                                 }
                             }
                             else
@@ -394,7 +406,7 @@ Amount EUR: {amountEUR}");
                             {
                                 if (amountToConvertUSDtoGEL <= amountUSD)
                                 {
-                                    CreateTransaction(currentUser, "CurrencyConversion", amountGEL + (2.64 * amountToConvertUSDtoGEL), amountUSD - amountToConvertUSDtoGEL, amountEUR);
+                                    Transaction.CreateTransaction(currentUser, "CurrencyConversion", amountGEL + (2.64 * amountToConvertUSDtoGEL), amountUSD - amountToConvertUSDtoGEL, amountEUR);
                                 }
                             }
                             else
@@ -409,7 +421,7 @@ Amount EUR: {amountEUR}");
                             {
                                 if (amountToConvertUSDtoEUR <= amountUSD)
                                 {
-                                    CreateTransaction(currentUser, "CurrencyConversion", amountGEL, amountUSD - amountToConvertUSDtoEUR, amountEUR + (0.93 * amountToConvertUSDtoEUR));
+                                    Transaction.CreateTransaction(currentUser, "CurrencyConversion", amountGEL, amountUSD - amountToConvertUSDtoEUR, amountEUR + (0.93 * amountToConvertUSDtoEUR));
                                 }
                             }
                             else
@@ -432,7 +444,7 @@ Amount EUR: {amountEUR}");
                             {
                                 if (amountToConvertEURtoGEL <= amountEUR)
                                 {
-                                    CreateTransaction(currentUser, "CurrencyConversion", amountGEL + (2.85 * amountToConvertEURtoGEL), amountUSD, amountEUR - amountToConvertEURtoGEL);
+                                    Transaction.CreateTransaction(currentUser, "CurrencyConversion", amountGEL + (2.85 * amountToConvertEURtoGEL), amountUSD, amountEUR - amountToConvertEURtoGEL);
                                 }
                             }
                             else
@@ -447,7 +459,7 @@ Amount EUR: {amountEUR}");
                             {
                                 if (amountToConvertEURtoUSD <= amountEUR)
                                 {
-                                    CreateTransaction(currentUser, "CurrencyConversion", amountGEL, amountUSD + (1.08 * amountToConvertEURtoUSD), amountEUR - amountToConvertEURtoUSD);
+                                    Transaction.CreateTransaction(currentUser, "CurrencyConversion", amountGEL, amountUSD + (1.08 * amountToConvertEURtoUSD), amountEUR - amountToConvertEURtoUSD);
                                 }
                             }
                             else

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 namespace BankingApplication
 {
@@ -17,6 +18,30 @@ Transaction Type: {TransactionType}
 Amount GEL: {AmountGEL}
 Amount USD: {AmountUSD}
 Amount EUR: {AmountEUR}";
+        }
+        
+        public static void CreateTransaction(User currentUser, string transactionType, double amountGEL, double amountUSD, double amountEUR)
+        {
+            currentUser.TransactionHistory.Add(new Transaction()
+            {
+                TransactionDate = DateTime.Now,
+                TransactionType = transactionType,
+                AmountGEL = amountGEL,
+                AmountUSD = amountUSD,
+                AmountEUR = amountEUR
+            });
+        }
+        
+        public static void CreateTransaction(User currentUser, string transactionType)
+        {
+            currentUser.TransactionHistory.Add(new Transaction()
+            {
+                TransactionDate = DateTime.Now,
+                TransactionType = transactionType,
+                AmountGEL = currentUser.TransactionHistory.Last().AmountGEL,
+                AmountUSD = currentUser.TransactionHistory.Last().AmountUSD,
+                AmountEUR = currentUser.TransactionHistory.Last().AmountEUR
+            });
         }
     }
 }
