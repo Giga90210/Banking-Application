@@ -12,13 +12,15 @@ namespace BankingApplication
     {
         static void Main(string[] args)
         {
+            var logger = NLog.LogManager.GetCurrentClassLogger();
+            logger.Info("testing");
             var test123Text = File.ReadAllText("C:\\Users\\Home\\RiderProjects\\BankingApplication\\BankingApplication\\test123.json");
             var userList = JsonConvert.DeserializeObject<List<User>>(test123Text);
             while (true)
             {
                 var currentUser = new User()
                 {
-                    FirstName = "XXXX"
+                    PinCode = -1
                 };
                 Console.Write("Enter your card number:");
                 var inputCardNumber = Console.ReadLine();
@@ -35,7 +37,7 @@ namespace BankingApplication
                     }
                 }
 
-                if (currentUser.FirstName == "XXXX")
+                if (currentUser.PinCode == -1)
                 {
                     Console.WriteLine("\nNo such user exists in our database, please try again\n");
                     break;

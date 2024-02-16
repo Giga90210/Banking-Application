@@ -1,10 +1,22 @@
 {
   "version": 2,
-  "dgSpecHash": "xq8AHcOuPCGqn4ZM6G5zS8g1kKfXQJSrdtPnsql+2wYLxyBgmmjy2NLf6gQiTtRj8auf34Nxm3zCIRWeK7cCaQ==",
+  "dgSpecHash": "jStiT96UE2PwCCOF+4x6eis4aB2W4KVRur26AVpj8+WZJ3kqDpcf3kUaGQp2S6o/ed8CJV/W+GdnI4izw+7WjA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Home\\RiderProjects\\BankingApplication\\BankingApplication\\BankingApplication.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Home\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+    "C:\\Users\\Home\\.nuget\\packages\\microsoft.extensions.configuration\\3.1.0\\microsoft.extensions.configuration.3.1.0.nupkg.sha512",
+    "C:\\Users\\Home\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\3.1.0\\microsoft.extensions.configuration.abstractions.3.1.0.nupkg.sha512",
+    "C:\\Users\\Home\\.nuget\\packages\\microsoft.extensions.configuration.binder\\3.1.0\\microsoft.extensions.configuration.binder.3.1.0.nupkg.sha512",
+    "C:\\Users\\Home\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\3.1.0\\microsoft.extensions.dependencyinjection.3.1.0.nupkg.sha512",
+    "C:\\Users\\Home\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\3.1.0\\microsoft.extensions.dependencyinjection.abstractions.3.1.0.nupkg.sha512",
+    "C:\\Users\\Home\\.nuget\\packages\\microsoft.extensions.logging\\3.1.0\\microsoft.extensions.logging.3.1.0.nupkg.sha512",
+    "C:\\Users\\Home\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\3.1.0\\microsoft.extensions.logging.abstractions.3.1.0.nupkg.sha512",
+    "C:\\Users\\Home\\.nuget\\packages\\microsoft.extensions.options\\3.1.0\\microsoft.extensions.options.3.1.0.nupkg.sha512",
+    "C:\\Users\\Home\\.nuget\\packages\\microsoft.extensions.primitives\\3.1.0\\microsoft.extensions.primitives.3.1.0.nupkg.sha512",
+    "C:\\Users\\Home\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\Home\\.nuget\\packages\\nlog\\5.2.8\\nlog.5.2.8.nupkg.sha512",
+    "C:\\Users\\Home\\.nuget\\packages\\nlog.extensions.logging\\5.3.8\\nlog.extensions.logging.5.3.8.nupkg.sha512",
+    "C:\\Users\\Home\\.nuget\\packages\\nlog.web.aspnetcore\\5.3.8\\nlog.web.aspnetcore.5.3.8.nupkg.sha512"
   ],
   "logs": []
 }
